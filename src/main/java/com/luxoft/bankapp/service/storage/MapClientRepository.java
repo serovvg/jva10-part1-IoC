@@ -1,9 +1,14 @@
 package com.luxoft.bankapp.service.storage;
 
 import com.luxoft.bankapp.model.Client;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+@Service
 public class MapClientRepository implements ClientRepository {
 
     private Map<Long, Client> data;

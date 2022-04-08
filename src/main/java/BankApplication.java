@@ -16,7 +16,7 @@ public class BankApplication {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml", "test-clients.xml");
 
         Banking banking = initialize(applicationContext);
 
@@ -102,18 +102,9 @@ public class BankApplication {
 
         Banking banking = (Banking) applicationContext.getBean("banking");
 
-        Client client_1 = new Client(CLIENT_NAMES[0], Gender.MALE);
+        Client client_1 = (Client) applicationContext.getBean("client1");
 
-        AbstractAccount savingAccount = new SavingAccount(1000);
-        client_1.addAccount(savingAccount);
-
-        AbstractAccount checkingAccount = new CheckingAccount(1000);
-        client_1.addAccount(checkingAccount);
-
-        Client client_2 = new Client(CLIENT_NAMES[1], Gender.MALE);
-
-        AbstractAccount checking = new CheckingAccount(1500);
-        client_2.addAccount(checking);
+        Client client_2 = (Client) applicationContext.getBean("client2");
 
         banking.addClient(client_1);
         banking.addClient(client_2);

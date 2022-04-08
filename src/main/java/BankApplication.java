@@ -5,9 +5,7 @@ import com.luxoft.bankapp.model.Client;
 import com.luxoft.bankapp.model.Client.Gender;
 import com.luxoft.bankapp.model.SavingAccount;
 import com.luxoft.bankapp.service.BankReportService;
-import com.luxoft.bankapp.service.BankReportServiceImpl;
 import com.luxoft.bankapp.service.Banking;
-import com.luxoft.bankapp.service.storage.ClientRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -26,15 +24,14 @@ public class BankApplication {
 
         bankingServiceDemo(banking);
 
-//        bankReportsDemo(repository);
+        bankReportsDemo(applicationContext);
     }
 
-    public static void bankReportsDemo(ClientRepository repository) {
+    public static void bankReportsDemo(ApplicationContext applicationContext) {
 
         System.out.println("\n=== Using BankReportService ===\n");
 
-        BankReportService reportService = new BankReportServiceImpl();
-        reportService.setRepository(repository);
+        BankReportService reportService = (BankReportService) applicationContext.getBean("bankReport");
 
         System.out.println("Number of clients: " + reportService.getNumberOfBankClients());
 

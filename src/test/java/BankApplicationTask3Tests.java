@@ -1,4 +1,7 @@
-import com.luxoft.bankapp.model.*;
+import com.luxoft.bankapp.model.AbstractAccount;
+import com.luxoft.bankapp.model.CheckingAccount;
+import com.luxoft.bankapp.model.Client;
+import com.luxoft.bankapp.model.SavingAccount;
 import com.luxoft.bankapp.service.Banking;
 import com.luxoft.bankapp.service.BankingImpl;
 import com.luxoft.bankapp.service.storage.ClientRepository;
@@ -58,15 +61,7 @@ public class BankApplicationTask3Tests {
     @BeforeEach
     public void init() {
 
-        try {
-            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // ignore
-        }
-
-        // TODO you can replace code above with this when will have the method
-//        BankApplication.initialize(applicationContext);
+        BankApplication.initialize(applicationContext);
     }
 
     @Test
